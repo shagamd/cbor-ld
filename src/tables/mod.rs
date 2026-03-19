@@ -79,6 +79,7 @@ impl TypeTable {
                 let value = self.get_value(id).ok_or(DecodeError::InvalidValue)?;
                 Ok(JsonValue::String(value.into()))
             }
+            CborValue::Text(t) => Ok(JsonValue::String(t.clone().into())),
             _ => Err(DecodeError::InvalidValue),
         }
     }
